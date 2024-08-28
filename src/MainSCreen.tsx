@@ -50,8 +50,20 @@ const MainScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.viewWrapper}>
-          <Text style={styles.title}>Добро пожаловать!</Text>
-
+          <View style={styles.headerContainer}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.title}>Добро пожаловать!</Text>
+      </View>
+          <TouchableOpacity
+            style={styles.myBookingsIcon}
+            onPress={() => navigation.navigate('MyBookings')}
+            >
+          <Image
+            source={require('./assets/my-bookings-icon.png')} // Замените на путь к вашему изображению
+            style={styles.myBookingsIconImage}
+          />
+  </TouchableOpacity>
+</View>
           <View style={styles.categoriesContainer}>
             {fitnessCategories.map((category) => (
               <TouchableOpacity
@@ -71,16 +83,21 @@ const MainScreen: React.FC = () => {
               style={styles.categoryContainer}
               onPress={handleAllServicesPress}
             >
-              <Image
-                source={require('./assets/all-services.png')} // Замените на путь к вашему изображению
-                style={styles.categoryImage}
-              />
-              <Text style={styles.categoryName}>Все услуги</Text>
+              <View> 
+                <Image
+                  source={require('./assets/all-services.png')} // Замените на путь к вашему изображению
+                  style={styles.categoryImage}
+                />
+                <Text style={styles.categoryName}>Все услуги</Text>
+                
+              </View>
             </TouchableOpacity>
           </View>
 
           <View style={styles.servicesContainer}>
+            
             <Text style={styles.servicesTitle}>Все услуги</Text>
+            
             <View style={styles.viewWrapper}>
               {FitnessClasses.map((fitnessClass) => (
                 <TouchableOpacity
@@ -119,6 +136,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black'
   },
+  
   categoriesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -139,6 +157,25 @@ const styles = StyleSheet.create({
     height: 80,
     marginBottom: 10,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  myBookingsIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  myBookingsIconImage: {
+    padding: 25,
+    width: 30,
+    height: 30,
+    marginBottom: 10
+  },
   categoryName: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -150,8 +187,8 @@ const styles = StyleSheet.create({
   servicesTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
-    color: 'black'
+    color: 'black',
+    textAlign: 'center',
   },
   fitnessClassContainer: {
     
@@ -173,6 +210,7 @@ const styles = StyleSheet.create({
     color: '#00000f',
     
   },
+ 
 });
 
 export default MainScreen;

@@ -9,8 +9,9 @@ import {
   TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { FitnessClasses } from './FitnessClasses'; // Import from your FitnessClasses component
+import { FitnessClasses } from './FitnessClasses'; 
 
+// Интерфейс для фитнес-класса
 interface FitnessClass {
   id: number;
   name: string;
@@ -19,33 +20,42 @@ interface FitnessClass {
   price: string;
   category: string; 
 }
+
+// Интерфейс для пропсов экрана услуг
 interface ServicesScreenProps {
   route: any;
 }
 
 const ServicesScreen: React.FC<ServicesScreenProps> = ({ route }) => {
+  // Получаем навигацию
   const navigation = useNavigation();
+  
+  // Получаем категорию из параметров маршрута
   const { category } = route.params;
+  
+  // Состояние для поискового запроса
   const [searchTerm, setSearchTerm] = useState('');
 
-  
-
+  // Фильтруем фитнес-классы по категории
   const filteredClasses = FitnessClasses.filter(
     (fitnessClass) =>
       fitnessClass.category === category || category === 'Все услуги'
   );
 
+  // Фильтруем фитнес-классы по поисковому запросу
   const filteredAndSearchedClasses = filteredClasses.filter(
     (fitnessClass) =>
       fitnessClass.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Обработчик изменения поискового запроса
   const handleSearchTermChange = (text: string) => {
     setSearchTerm(text);
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Контейнер для поиска */}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -54,6 +64,7 @@ const ServicesScreen: React.FC<ServicesScreenProps> = ({ route }) => {
         />
       </View>
 
+      {/* Список фитнес-классов */}
       <ScrollView>
         <View style={styles.viewWrapper}>
           {filteredAndSearchedClasses.map((fitnessClass) => (
