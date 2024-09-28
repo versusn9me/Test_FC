@@ -10,7 +10,7 @@ interface Booking {
   date: Date;
   time: Date;
 }
-
+//kl;
 const MyBookingsScreen: React.FC = () => {
   // Состояние для хранения записей
   const [bookings, setBookings] = useState<Booking[]>([]);

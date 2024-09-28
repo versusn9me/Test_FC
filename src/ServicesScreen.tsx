@@ -83,7 +83,7 @@ const ServicesScreen: React.FC<ServicesScreenProps> = ({ route }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({//kl;;k;
   container: {
     flex: 1,
     backgroundColor: '#f1f1f1',

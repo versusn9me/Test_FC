@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react';;
 import {
   View,
   Text,
@@ -10,38 +10,44 @@ import {
   Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { FitnessClasses } from './FitnessClasses'; // Import from your FitnessClasses component
+import { FitnessClasses } from './FitnessClasses'; //hj
 
+// Интерфейс для категории фитнеса
 interface FitnessCategory {
   id: number;
   name: string;
-  imageUrl: any; // Use any for image source (string or require())
+  imageUrl: any; 
 }
 
 const MainScreen: React.FC = () => {
+  // Получаем навигацию
   const navigation = useNavigation();
+  
+  // Массив категорий фитнеса
   const fitnessCategories: FitnessCategory[] = [
     {
       id: 1,
       name: 'Групповые занятия',
-      imageUrl: require('./assets/group-classes.png'), // Замените на путь к вашему изображению
+      imageUrl: require('./assets/group-classes.png'), 
     },
     {
       id: 2,
       name: 'Персональные тренировки',
-      imageUrl: require('./assets/personal-training.png'), // Замените на путь к вашему изображению
+      imageUrl: require('./assets/personal-training.png'), 
     },
     {
       id: 3,
       name: 'Боевые искусства',
-      imageUrl: require('./assets/martial-arts.png'), // Замените на путь к вашему изображению
+      imageUrl: require('./assets/martial-arts.png'), 
     },
   ];
 
+  // Обработчик нажатия на категорию
   const handleCategoryPress = (categoryName: string) => {
     navigation.navigate('Services', { category: categoryName });
   };
 
+  // Обработчик нажатия на все услуги
   const handleAllServicesPress = () => {
     navigation.navigate('Services', { category: 'Все услуги' });
   };
@@ -53,17 +59,19 @@ const MainScreen: React.FC = () => {
           <View style={styles.headerContainer}>
             <View style={{ flex: 1 }}>
               <Text style={styles.title}>Добро пожаловать!</Text>
-      </View>
-          <TouchableOpacity
-            style={styles.myBookingsIcon}
-            onPress={() => navigation.navigate('MyBookings')}
+            </View>
+            {/* Иконка "Мои бронирования" */}
+            <TouchableOpacity
+              style={styles.myBookingsIcon}
+              onPress={() => navigation.navigate('MyBookings')}
             >
-          <Image
-            source={require('./assets/my-bookings-icon.png')} // Замените на путь к вашему изображению
-            style={styles.myBookingsIconImage}
-          />
-  </TouchableOpacity>
-</View>
+              <Image
+                source={require('./assets/my-bookings-icon.png')} 
+                style={styles.myBookingsIconImage}
+              />
+            </TouchableOpacity>
+          </View>
+          {/* Категории фитнеса */}
           <View style={styles.categoriesContainer}>
             {fitnessCategories.map((category) => (
               <TouchableOpacity
@@ -78,6 +86,7 @@ const MainScreen: React.FC = () => {
                 <Text style={styles.categoryName}>{category.name}</Text>
               </TouchableOpacity>
             ))}
+            {/* Кнопка "Все услуги" */}
             <TouchableOpacity
               key={4}
               style={styles.categoryContainer}
@@ -85,19 +94,17 @@ const MainScreen: React.FC = () => {
             >
               <View> 
                 <Image
-                  source={require('./assets/all-services.png')} // Замените на путь к вашему изображению
+                  source={require('./assets/all-services.png')} 
                   style={styles.categoryImage}
                 />
                 <Text style={styles.categoryName}>Все услуги</Text>
-                
               </View>
             </TouchableOpacity>
           </View>
 
+          {/* Список услуг */}
           <View style={styles.servicesContainer}>
-            
             <Text style={styles.servicesTitle}>Все услуги</Text>
-            
             <View style={styles.viewWrapper}>
               {FitnessClasses.map((fitnessClass) => (
                 <TouchableOpacity
@@ -116,7 +123,6 @@ const MainScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

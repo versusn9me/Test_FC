@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react';;
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+//kl;
 interface BookingConfirmationScreenProps {
   route: any; 
 }
